@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>2024 나만의 신년 계획</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Hahmlet:wght@300&display=swap");
+
+    * {
+      font-family: 'Hahmlet', serif;
+    }
+
+    .bg {
+      background-image: url('https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/bucketList/bg-grid.png');
+      background-position: center;
+      background-size: cover;
+      margin: auto;
+      width: 360px;
+
+
+    }
+
+    .title {
+      background-color: lightblue;
+      border-radius: 10px;
+      text-align: center;
+      padding: 4px 14px;
+    }
+
+
+
+    .bucket {
+      width: 160px;
+      height: 160px;
+      background-position: center;
+      background-size: cover;
+      color: white;
+      text-align: center;
+
+    }
+
+    .bucket {
+      background-size: cover;
+      background-position: center;
+      margin: 8px;
+      position: relative;
+
+      font-wight: bold;
+      font-size: 16px;
+      text-alignt: center;
+      word-break: keep-all;
+    }
+
+    .img1 {
+      background-image: url('https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/bucketList/bucket-red.png');
+      color: white;
+    }
+
+    .img2 {
+      background-image: url('https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/bucketList/bucket-lightred.png');
+      color: black;
+    }
+
+    .flex-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .done ::after {
+      content: "";
+      width: 70%;
+      height: 70%;
+      background-image: url(https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/bucketList/bg-grid.png);
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      top: 20%
+    }
+
+    .wrap {
+      flex-wrap: wrap;
+    }
+
+    .class='msg center' {
+      color: black !important;
+    }
+  </style>
+
+
+
+
+
+</head>
+
+<body class="bg center">
+  <h1 class="title center">LA 여행 계획</h1>
+  <p class="msg center"> 올해 안에 꼭 민철이를 보러
+  <p class="msg center"> 미국 여행을 가야지.</p>
+  <div class="flex-row wrap">
+    <div class="bucket img1 center"> LIOT ARENA </div>
+    <div class="bucket img2 center"> 칙폴레 스윗그린 인앤아웃 </div>
+    <div class="bucket img2 center"> 그리피스 천문대 유니버셜 할리우드 </div>
+    <div class="bucket img1 center"> 산타모니카 부두</div>
+    <div class="bucket img1 center"> 자연사 박물관 </div>
+    <div class="bucket img2 center"> 더그로브 쇼핑몰 </div>
+  </div>
+
+  <script>
+    // 페이지 로드 시 이전 상태 복원
+    document.addEventListener("DOMContentLoaded", (event) => {
+      const buckets = document.querySelectorAll(".bucket");
+      buckets.forEach((bucket, index) => {
+        // 로컬 스토리지에서 상태 읽기
+        const isDone = localStorage.getItem("bucket" + index) === "done";
+        if (isDone) {
+          bucket.classList.add("done");
+        }
+      });
+    });
+
+    // 버킷 리스트 클릭 이벤트
+    const buckets = document.querySelectorAll(".bucket");
+    buckets.forEach((bucket, index) => {
+      bucket.addEventListener("click", function () {
+        // 클래스 토글
+        bucket.classList.toggle("done");
+
+        // 로컬 스토리지에 상태 저장
+        if (bucket.classList.contains("done")) {
+          localStorage.setItem("bucket" + index, "done");
+        } else {
+          localStorage.setItem("bucket" + index, "");
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
